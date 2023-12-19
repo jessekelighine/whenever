@@ -39,8 +39,8 @@ value_prev=$( find "$1" -type f -exec $WHENEVER_COMMAND {} \; )
 while : ; do sleep $WHENEVER_INTERVAL
 	value_curr=$( find "$1" -type f -exec $WHENEVER_COMMAND {} \; )
 	[[ "$value_curr" != "$value_prev" ]] && {
-		value_prev="$value_curr"
 		${@:2}
 		progress $((++count))
+		value_prev=$( find "$1" -type f -exec $WHENEVER_COMMAND {} \; )
 	}
 done

@@ -25,6 +25,24 @@ whenever file.txt echo "Hello"
 ```
 `whenever` will display a message and keep count on the times `[file]` is modified and `[command]` is run.
 
+Another more useful example is to compile a $\mathrm{\LaTeX}$ file whenever a file in the same directory,
+usually different sections of the $\mathrm{\LaTeX}$ document,
+is changed.
+Say you have a directory `paper/` that looks like this:
+```
+paper
+├── main.tex
+├── section-appdix.tex
+├── section-discussion.tex
+├── section-into.tex
+└── settings.sty
+```
+In this case, when you are in directory `paper/`, you can use
+```sh
+whenever ../paper pdflatex main.tex
+```
+so that you don't have to manually compile whenever you change one of the "section" files.
+
 ## Settings
 
 Here are some variables that can be customized:
