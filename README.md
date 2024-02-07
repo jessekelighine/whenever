@@ -39,7 +39,7 @@ paper
 ```
 In this case, when you are in directory `paper/`, you can use
 ```sh
-whenever ../paper pdflatex main.tex
+whenever . pdflatex main.tex
 ```
 so that you don't have to manually compile whenever you change one of the "section" files.
 
