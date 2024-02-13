@@ -53,4 +53,4 @@ Here are some variables that can be customized:
 ## License
 
 License: GPL-3</br>
-Copyright 2023 Jesse C. Chen
+Copyright 2024 Jesse C. Chen
