@@ -2,7 +2,7 @@
 
 ###############################################################################
 # -*- encoding: UTF-8 -*-                                                     #
-# Author: Jesse C. Chen  (jessekelighine@gmail.com)                           #
+# Author: Jesse C. Chen  (jessekelighine.com)                                 #
 # Description: `whenever`, run a command whenever a file/dir is changed.      #
 # Last Modified: 2024-02-07                                                   #
 #                                                                             #
