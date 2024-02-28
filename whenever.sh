@@ -46,12 +46,12 @@ calc_value () {
 }
 
 count=0
-state="$(calc_value "$1")"
+previous_state="$(calc_value "$1")"
 while : ; do sleep $WHENEVER_INTERVAL
-	snapshot="$(calc_value "$1")"
-	[[ "$state" != "$snapshot" ]] && {
+	current_state="$(calc_value "$1")"
+	[[ "$previous_state" != "$current_state" ]] && {
 		${@:2}
 		progress $((++count))
-		state="$(calc_value "$1")"
+		previous_state="$(calc_value "$1")"
 	}
 done
