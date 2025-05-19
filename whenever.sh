@@ -39,6 +39,7 @@ $examples:
 $environment:
     WHENEVER_INTERVAL    The interval in seconds to check for changes. Default
                          is 1 second.
+
     WHENEVER_COMMAND     The command used to check whether files are modified.
                          Default is md5sum.
 EOF

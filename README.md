@@ -1,7 +1,7 @@
-# whenever: run a command whenever a file/directory is changed
+# whenever: run a command whenever some files/directories are changed
 
 `whenever` is a simple terminal utility (implemented in about 50 lines of bash)
-that lets you run a command whenever a file or directory is changed.
+that lets you run a command whenever some files or directories are changed.
 
 ## Installation
 
@@ -30,6 +30,7 @@ EXAMPLES:
 ENVIRONMENT:
     WHENEVER_INTERVAL    The interval in seconds to check for changes. Default
                          is 1 second.
+
     WHENEVER_COMMAND     The command used to check whether files are modified.
                          Default is md5sum.
 ```
