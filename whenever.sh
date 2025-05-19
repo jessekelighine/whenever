@@ -7,8 +7,10 @@
 # Last Modified: 2024-02-07                                                   #
 #                                                                             #
 # License: GPL-3                                                              #
-# Copyright 2023-2024 Jesse C. Chen                                           #
+# Copyright 2023-2025 Jesse C. Chen                                           #
 ###############################################################################
+
+set -e
 
 : "${WHENEVER_INTERVAL:=1}"
 : "${WHENEVER_COMMAND:=md5sum}"
@@ -16,9 +18,23 @@
 ### Functions #################################################################
 
 message () {
+	local examples; examples="$(tput bold)EXAMPLES$(tput sgr0)"
+	local description; description="$(tput bold)DESCRIPTION$(tput sgr0)"
+	local usage; usage="$(tput bold)USAGE$(tput sgr0)"
+	local command; command="$(tput bold)$(basename "$0")$(tput sgr0)"
 	cat << EOF
-usage: $(basename "$0") [file|dir] [command]
-description: run [command] whenever [file|dir] is modified.
+$usage: $command [command] <<< [files|directories]
+$description:
+	Run [command] whenever [files|directories] are modified. Files/directories
+	that are watched for changes are passed to $command via stdin, this usually
+	means piping [files|directories] to $command, see $examples. Please do not
+	have any special characters in the filenames.
+$examples:
+	# echo "hmmm" whenever any file in the current directory is modified.
+	find . -type f | $command echo "hmmm"
+
+	# Recompile LaTeX whenever the source file or style file is modified.
+	echo paper.tex settings.sty | $command pdflatex paper.tex
 EOF
 }
 
@@ -28,24 +44,25 @@ progress () {
 	printf "${yellow}== whenever: %d ==================================${norm}\n" "$1"
 }
 
-calc_value () {
-	echo "$(find "$1" -type f -exec $WHENEVER_COMMAND {} \;)"
+calculate_hash () {
+	echo "$1" | xargs -n 1 -J % find % -type f -exec sh -c "$WHENEVER_COMMAND {}" \;
 }
 
 ### Main ######################################################################
 
-[[ $# -lt 2 ]] && {
+[[ $# -lt 1 ]] && {
 	message >&2
 	exit 1
 }
 
 count=0
-previous_state="$(calc_value "$1")"
+watch_files="$(</dev/stdin)"
+previous_state="$(calculate_hash "$watch_files")"
 while : ; do sleep "$WHENEVER_INTERVAL"
-	current_state="$(calc_value "$1")"
+	current_state="$(calculate_hash "$watch_files")"
 	[[ "$previous_state" != "$current_state" ]] && {
-		${@:2}
+		"$@"
 		progress $((++count))
-		previous_state="$(calc_value "$1")"
+		previous_state="$(calculate_hash "$watch_files")"
 	}
 done
