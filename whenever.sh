@@ -27,15 +27,16 @@ message () {
 $usage: $whenever [command] <<< [files|directories]
 $description:
     Run [command] whenever [files|directories] are modified. Files/directories
-    that are watched for changes are passed to $whenever via stdin, this usually
-    means piping [files|directories] to $whenever, see $examples. Please do not
-    have any special characters in the filenames.
+    that are watched for changes are passed to $whenever via stdin, this
+    usually means piping [files|directories] to $whenever, see $examples.
+    Please do not have any special characters in the filenames.
 $examples:
     # echo "hmmm" whenever any file in the current directory is modified.
     find . -type f | $whenever echo "hmmm"
 
-    # Recompile LaTeX whenever the source file or style file is modified.
-    echo paper.tex settings.sty | $whenever pdflatex paper.tex
+    # Convert markdown to html whenever the file itself, the style sheet,
+    # or any thing in the src directory is modified.
+    echo index.md style.css src/ | $whenever pandoc index.md --to index.html
 $environment:
     WHENEVER_INTERVAL    The interval in seconds to check for changes. Default
                          is 1 second.
