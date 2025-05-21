@@ -27,14 +27,18 @@ EXAMPLES:
 
     # Convert markdown to html whenever the file itself, the style sheet,
     # or any thing in the src directory is modified.
-    echo index.md style.css src/ | whenever pandoc index.md --to index.html
+    echo index.md style.css src/ | whenever pandoc index.md --output index.html
 ENVIRONMENT:
     WHENEVER_INTERVAL    The interval in seconds to check for changes. Default
-                         is 1 second.
+                         is 1 second, it is currently set to 1 second(s).
 
     WHENEVER_COMMAND     The command used to check whether files are modified.
-                         Default is md5sum.
+                         Default is md5sum, it is currently set to md5sum.
 ```
+
+> [!TIP]
+> `md5sum` is expensive to run if you are using `whenever` on a large number of files.
+> One alternative is to simply use `ls -l` or `stat -L` to get the last modified time of the files.
 
 ## License
 

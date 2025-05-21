@@ -36,13 +36,13 @@ $examples:
 
     # Convert markdown to html whenever the file itself, the style sheet,
     # or any thing in the src directory is modified.
-    echo index.md style.css src/ | $whenever pandoc index.md --to index.html
+    echo index.md style.css src/ | $whenever pandoc index.md --output index.html
 $environment:
     WHENEVER_INTERVAL    The interval in seconds to check for changes. Default
-                         is 1 second.
+                         is 1 second, it is currently set to $WHENEVER_INTERVAL second(s).
 
     WHENEVER_COMMAND     The command used to check whether files are modified.
-                         Default is md5sum.
+                         Default is \`md5sum\`, it is currently set to \`$WHENEVER_COMMAND\`.
 EOF
 }
 
@@ -53,7 +53,7 @@ progress () {
 }
 
 calculate_hash () {
-	echo "$1" | xargs -n 1 -J % find % -type f -exec "$WHENEVER_COMMAND" {} \;
+	echo "$1" | xargs -n 1 -J % find % -type f -exec $WHENEVER_COMMAND {} \;
 }
 
 ### Main ######################################################################
