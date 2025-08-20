@@ -29,7 +29,8 @@ $description:
     Run [command] whenever [files|directories] are modified. Files/directories
     that are watched for changes are passed to $whenever via stdin, this
     usually means piping [files|directories] to $whenever, see $examples.
-    Please do not have any special characters in the filenames.
+    Please do not have any special characters in the file paths, $whenever
+    does not handle them well.
 $examples:
     # echo "hmmm" whenever any file in the current directory is modified.
     find . -type f | $whenever echo "hmmm"
