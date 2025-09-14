@@ -33,12 +33,12 @@ ENVIRONMENT:
                          is 1 second, it is currently set to 1 second(s).
 
     WHENEVER_COMMAND     The command used to check whether files are modified.
-                         Default is md5sum, it is currently set to md5sum.
+                         Default is `stat`, it is currently set to `stat`.
 ```
 
 > [!TIP]
-> `md5sum` is expensive to run if you are using `whenever` on a large number of files.
-> One alternative is to simply use `ls -l` or `stat -L` to get the last modified time of the files.
+> `stat` will tell you if a file is *written*, not necessarily if the content is *changed*.
+> One can use `md5sum` instead to check if the content is changed, but it is a lot slower.
 
 ## License
 

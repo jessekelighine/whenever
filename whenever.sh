@@ -4,7 +4,7 @@
 # -*- encoding: UTF-8 -*-                                                     #
 # Author: Jesse C. Chen  (jessekelighine.com)                                 #
 # Description: Run a command WHENEVER some files/dirs are changed.            #
-# Last Modified: 2025-05-19                                                   #
+# Last Modified: 2025-09-13                                                   #
 #                                                                             #
 # License: GPL-3                                                              #
 # Copyright 2023-2025 Jesse C. Chen                                           #
@@ -13,7 +13,7 @@
 set -e
 
 : "${WHENEVER_INTERVAL:=1}"
-: "${WHENEVER_COMMAND:=md5sum}"
+: "${WHENEVER_COMMAND:=stat}"
 
 ### Functions #################################################################
 
@@ -43,7 +43,7 @@ $environment:
                          is 1 second, it is currently set to $WHENEVER_INTERVAL second(s).
 
     WHENEVER_COMMAND     The command used to check whether files are modified.
-                         Default is \`md5sum\`, it is currently set to \`$WHENEVER_COMMAND\`.
+                         Default is \`stat\`, it is currently set to \`$WHENEVER_COMMAND\`.
 EOF
 }
 
