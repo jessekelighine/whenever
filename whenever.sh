@@ -13,7 +13,7 @@
 set -e
 
 : "${WHENEVER_INTERVAL:=1}"
-: "${WHENEVER_COMMAND:=stat}"
+: "${WHENEVER_COMMAND:=md5sum}"
 
 ### Functions #################################################################
 
@@ -43,7 +43,7 @@ $environment:
                          is 1 second, it is currently set to $WHENEVER_INTERVAL second(s).
 
     WHENEVER_COMMAND     The command used to check whether files are modified.
-                         Default is \`stat\`, it is currently set to \`$WHENEVER_COMMAND\`.
+                         Default is \`md5sum\`, it is currently set to \`$WHENEVER_COMMAND\`.
 EOF
 }
 

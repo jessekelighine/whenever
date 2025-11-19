@@ -33,12 +33,8 @@ ENVIRONMENT:
                          is 1 second, it is currently set to 1 second(s).
 
     WHENEVER_COMMAND     The command used to check whether files are modified.
-                         Default is `stat`, it is currently set to `stat`.
+                         Default is `md5sum`, it is currently set to `md5sum`.
 ```
-
-> [!TIP]
-> `stat` will tell you if a file is *written*, not necessarily if the content is *changed*.
-> One can use `md5sum` instead to check if the content is changed, but it is a lot slower.
 
 ## License
 
