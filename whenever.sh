@@ -54,7 +54,7 @@ progress () {
 }
 
 calculate_hash () {
-	echo "$1" | xargs -n 1 -J % find % -type f -exec $WHENEVER_COMMAND {} \;
+	echo "$1" | xargs -n 1 -J % find -L % -type f -exec $WHENEVER_COMMAND {} \;
 }
 
 ### Main ######################################################################
@@ -63,6 +63,7 @@ calculate_hash () {
 	message >&2
 	exit 1
 }
+
 
 watch_files="$(</dev/stdin)"
 count=0
